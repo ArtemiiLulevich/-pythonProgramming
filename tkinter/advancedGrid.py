@@ -28,7 +28,7 @@ fileList = tkinter.Listbox(mainWindow)
 fileList.grid(row=1, column=0, sticky='nsew', rowspan=2)
 fileList.config(border=2, relief='groove')
 
-for zone in os.listdir('/Windows/System32'):
+for zone in os.listdir('C:\Windows\System32'):
     fileList.insert(tkinter.END, zone)
 
 listScroll = tkinter.Scrollbar(mainWindow, orient=tkinter.VERTICAL, command=fileList.yview)
