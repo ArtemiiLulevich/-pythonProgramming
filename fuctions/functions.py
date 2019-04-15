@@ -1,6 +1,6 @@
 def python_food():
     width = 80
-    text = "Spam and eggs"
+    text = "Spam and eggs/"
     left_margin = (width - len(text)) // 2
     print(" " * left_margin, text)
 
