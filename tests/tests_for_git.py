@@ -3,8 +3,14 @@ def return_few_func_value():
     # return 7, 8
 
 
-x, y, z = return_few_func_value()
+def print_with_semicolon():
+    print(7, 8, 10, 20, sep=':')
 
-print("x: ", x)
-print("y: ", y)
-print("z: ", z)
+# x, y, z = return_few_func_value()
+#
+# print("x: ", x)
+# print("y: ", y)
+# print("z: ", z)
+
+
+print_with_semicolon()
