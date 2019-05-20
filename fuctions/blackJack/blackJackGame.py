@@ -4,6 +4,8 @@ try:
     import tkinter
 except ImportError:
     import Tkinter as tkinter
+
+
 # function for loading cards
 def load_images(card_images):
     suits = ['heart', 'club', 'diamond', 'spade']
@@ -29,7 +31,7 @@ def load_images(card_images):
 
 
 def deal_card(frame):
-    #pop the next card off the top of the deck
+    # pop the next card off the top of the deck
     next_card = deck.pop(0)
     # add the image to a label and display the label
     tkinter.Label(frame, image=next_card[1],
@@ -51,6 +53,7 @@ def deal_player():
     player_score_label.set(def_player_score)
     if player_score > 21:
         result_text.set("Dealer wins!")
+
 
 def deal_dealer():
     deal_card(dealer_card_frame)
@@ -79,7 +82,7 @@ tkinter.Label(card_frame, text="Dealer",
 tkinter.Label(card_frame, textvariable=dealer_score_label,
               background="green", fg="white").grid(row=1, column=0)
 
-#embedded frame hold the card images
+# embedded frame hold the card images
 
 dealer_card_frame = tkinter.Frame(card_frame, background="green")
 dealer_card_frame.grid(row=0, column=1, sticky="ew", rowspan=2)
@@ -111,10 +114,10 @@ player_button.grid(row=0, column=1)
 # load cards
 cards = []
 load_images(cards)
-#print(cards)
+# print(cards)
 # Create a new deck cards and shuffle them
 
-deck = list(cards) # Creating a new separate list
+deck = list(cards)  # Creating a new separate list
 random.shuffle(deck)
 
 # Create a lists to store the dealer's and player's hands
