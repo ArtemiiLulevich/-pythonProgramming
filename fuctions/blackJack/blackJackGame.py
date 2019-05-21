@@ -52,7 +52,7 @@ def score_hand(hand):
             ace = True
             card_value = 11
         score += card_value
-        # if we would bust, check if there is an ace and substract 10
+        # if we would bust, check if there is an ace and subtract 10
         if score > 21 and ace:
             score -= 10
             ace = False
@@ -85,7 +85,21 @@ def deal_player():
 
 
 def deal_dealer():
-    deal_card(dealer_card_frame)
+    dealer_score = score_hand(dealer_hand)
+    while 0 < dealer_score < 17:
+        dealer_hand.append(deal_card(dealer_card_frame))
+        dealer_score = score_hand(dealer_hand)
+        dealer_score_label.set(dealer_score)
+
+    player_score = score_hand(player_hand)
+    if player_score > 21:
+        result_text.set("Dealer wins!")
+    elif dealer_score > 21 or dealer_score < player_score:
+        result_text.set("Player wins!")
+    elif dealer_score > player_score:
+        result_text.set("Dealer wins!")
+    else:
+        result_text.set("Draw!")
 
 
 mainWindow = tkinter.Tk()
@@ -152,5 +166,10 @@ random.shuffle(deck)
 # Create a lists to store the dealer's and player's hands
 dealer_hand = []
 player_hand = []
+
+deal_player()
+dealer_hand.append(deal_card(dealer_card_frame))
+dealer_score_label.set(score_hand(dealer_hand))
+deal_player()
 
 mainWindow.mainloop()
