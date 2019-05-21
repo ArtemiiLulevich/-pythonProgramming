@@ -11,21 +11,21 @@ def load_images(card_images):
     suits = ['heart', 'club', 'diamond', 'spade']
     face_cards = ['jack', 'queen', 'king']
     if tkinter.TkVersion >= 8.6:
-        extention = 'png'
+        extension = 'png'
     else:
-        extention = 'ppm'
+        extension = 'ppm'
     for suit in suits:
-        # Extract cards images from the directory 
+        # Extract cards images from the directory
         for card in range(1, 11):
             name = 'cards_{}/{}_{}.{}'.format(
-                extention, str(card), suit, extention)
+                extension, str(card), suit, extension)
             # print(name) for debug
             image = tkinter.PhotoImage(file=name)
             card_images.append((card, image,))
 
         for card in face_cards:
             name = 'cards_{}/{}_{}.{}'.format(
-                extention, str(card), suit, extention)
+                extension, str(card), suit, extension)
             image = tkinter.PhotoImage(file=name)
             card_images.append((10, image,))
 
@@ -40,19 +40,48 @@ def deal_card(frame):
     return next_card
 
 
+def score_hand(hand):
+    # Calculate the total score of all cards ini the list
+    # Only one ace can have the value 11, and this will be reduce to
+    # 1 if th hand would bust
+    score = 0
+    ace = False
+    for next_card in hand:
+        card_value = next_card[0]
+        if card_value == 1 and not ace:
+            ace = True
+            card_value = 11
+        score += card_value
+        # if we would bust, check if there is an ace and substract 10
+        if score > 21 and ace:
+            score -= 10
+            ace = False
+    return score
+
+
 def deal_player():
-    # player_score = 0
-    def_player_score = 0
+    player_hand.append(deal_card(player_card_frame))
+    player_score = score_hand(player_hand)
+
+    player_score_label.set(player_score)
+    if player_score > 21:
+        result_text.set("Dealer Wins!")
+
+    """
+    global player_score
+    global player_ace
     card_value = deal_card(player_card_frame)[0]
     if card_value == 1 and not player_ace:
+        player_ace = True
         card_value = 11
-    def_player_score +=card_value
-    player_score = def_player_score
-    if def_player_score > 21 and player_ace:
-        def_player_score -= 10
-    player_score_label.set(def_player_score)
+    player_score +=card_value
+    if player_score > 21 and player_ace:
+        player_ace = False
+        player_score -= 10
+    player_score_label.set(player_score)
     if player_score > 21:
         result_text.set("Dealer wins!")
+        """
 
 
 def deal_dealer():
@@ -88,8 +117,8 @@ dealer_card_frame = tkinter.Frame(card_frame, background="green")
 dealer_card_frame.grid(row=0, column=1, sticky="ew", rowspan=2)
 
 player_score_label = tkinter.IntVar()
-player_score = 0
-player_ace = False
+# player_score = 0
+# player_ace = False
 
 tkinter.Label(card_frame, text="Player",
               background="green", fg="white").grid(row=2, column=0)
