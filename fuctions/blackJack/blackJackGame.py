@@ -66,6 +66,7 @@ def deal_player():
     player_score_label.set(player_score)
     if player_score > 21:
         result_text.set("Dealer Wins!")
+        wins_score(False)
 
     """
     global player_score
@@ -94,12 +95,31 @@ def deal_dealer():
     player_score = score_hand(player_hand)
     if player_score > 21:
         result_text.set("Dealer wins!")
+        wins_score(False)
     elif dealer_score > 21 or dealer_score < player_score:
         result_text.set("Player wins!")
+        wins_score(True)
     elif dealer_score > player_score:
         result_text.set("Dealer wins!")
+        wins_score(False)
     else:
         result_text.set("Draw!")
+        button_disabled()
+
+
+def wins_score(party):
+    if party:
+        wins_list['P'] += 1
+    else:
+        wins_list['D'] += 1
+    player_wins_label.set(wins_list['P'])
+    dealer_wins_label.set(wins_list['D'])
+    button_disabled()
+
+
+def button_disabled():
+    player_button["state"] = "disabled"
+    dealer_button["state"] = "disabled"
 
 
 def start_new_game():
@@ -118,6 +138,9 @@ def start_new_game():
     player_card_frame.destroy()
     player_card_frame = tkinter.Frame(card_frame, background="green")
     player_card_frame.grid(row=2, column=1, sticky="ew", rowspan=2)
+
+    player_button["state"] = "active"
+    dealer_button["state"] = "active"
 
     result_text.set("")
 
@@ -150,7 +173,7 @@ mainWindow.configure(background='green')
 
 result_text = tkinter.StringVar()
 
-result = tkinter.Label(mainWindow, textvariable=result_text)
+result = tkinter.Label(mainWindow, textvariable=result_text, background='green')
 result.grid(row=0, column=0, columnspan=3)
 
 card_frame = tkinter.Frame(mainWindow, relief="sunken",
@@ -182,8 +205,21 @@ tkinter.Label(card_frame, textvariable=player_score_label,
 player_card_frame = tkinter.Frame(card_frame, background="green")
 player_card_frame.grid(row=2, column=1, sticky="ew", rowspan=2)
 
+wins_frame = tkinter.Frame(mainWindow, background="green")
+wins_frame.grid(row=3, column=0, columnspan=3, sticky="sewn")
+player_wins_label = tkinter.IntVar()
+tkinter.Label(wins_frame, text="Player",
+              background="red", fg="white").grid(row=1, column=0, sticky="sewn")
+tkinter.Label(wins_frame, textvariable=player_wins_label,
+              backgroun="red", fg="white").grid(row=2, column=0, sticky="sewn")
+dealer_wins_label = tkinter.IntVar()
+tkinter.Label(wins_frame, text="Dealer",
+              background="red", fg="white").grid(row=1, column=1, sticky="sewn")
+tkinter.Label(wins_frame, textvariable=dealer_wins_label,
+              background="red", fg="white").grid(row=2, column=1, sticky="sewn")
+
 button_frame = tkinter.Frame(mainWindow)
-button_frame.grid(row=3, column=0, columnspan=3, sticky="w")
+button_frame.grid(row=4, column=0, columnspan=3, sticky="w")
 
 dealer_button = tkinter.Button(button_frame, text="Dealer",
                                command=deal_dealer)
@@ -196,6 +232,10 @@ player_button.grid(row=0, column=1)
 new_game_button = tkinter.Button(button_frame, text="New Game",
                                  command=start_new_game)
 new_game_button.grid(row=0, column=2)
+
+wins_list = {'P': 0, 'D': 0}
+player_wins_label.set(wins_list['P'])
+player_wins_label.set(wins_list['D'])
 
 start_new_game()
 
