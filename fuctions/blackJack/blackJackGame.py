@@ -162,6 +162,12 @@ def start_new_game():
     dealer_score_label.set(score_hand(dealer_hand))
     deal_player()
 
+# print(__name__)
+
+# if __name__ == "__main__":
+def play():
+    start_new_game()
+    mainWindow.mainloop()
 
 mainWindow = tkinter.Tk()
 
@@ -237,7 +243,7 @@ wins_list = {'P': 0, 'D': 0}
 player_wins_label.set(wins_list['P'])
 player_wins_label.set(wins_list['D'])
 
-start_new_game()
+# start_new_game()
 
 # # load cards
 # cards = []
@@ -257,4 +263,6 @@ start_new_game()
 # dealer_score_label.set(score_hand(dealer_hand))
 # deal_player()
 
-mainWindow.mainloop()
+if __name__ == '__main__':
+    # print(__name__)
+    play()
