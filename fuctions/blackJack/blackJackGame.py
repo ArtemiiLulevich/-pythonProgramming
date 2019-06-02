@@ -30,7 +30,7 @@ def load_images(card_images):
             card_images.append((10, image,))
 
 
-def deal_card(frame):
+def _deal_card(frame):
     # pop the next card off the top of the deck
     next_card = deck.pop(0)
     # add the image to a label and display the label
@@ -60,7 +60,7 @@ def score_hand(hand):
 
 
 def deal_player():
-    player_hand.append(deal_card(player_card_frame))
+    player_hand.append(_deal_card(player_card_frame))
     player_score = score_hand(player_hand)
 
     player_score_label.set(player_score)
@@ -88,7 +88,7 @@ def deal_player():
 def deal_dealer():
     dealer_score = score_hand(dealer_hand)
     while 0 < dealer_score < 17:
-        dealer_hand.append(deal_card(dealer_card_frame))
+        dealer_hand.append(_deal_card(dealer_card_frame))
         dealer_score = score_hand(dealer_hand)
         dealer_score_label.set(dealer_score)
 
@@ -158,16 +158,19 @@ def start_new_game():
     player_hand = []
 
     deal_player()
-    dealer_hand.append(deal_card(dealer_card_frame))
+    dealer_hand.append(_deal_card(dealer_card_frame))
     dealer_score_label.set(score_hand(dealer_hand))
     deal_player()
 
 # print(__name__)
 
 # if __name__ == "__main__":
+
+
 def play():
     start_new_game()
     mainWindow.mainloop()
+
 
 mainWindow = tkinter.Tk()
 
