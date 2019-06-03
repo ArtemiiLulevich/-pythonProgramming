@@ -29,7 +29,7 @@ def fib_wo_rec(n):
     else:
         n_minus1 = 1
         n_minus2 = 0
-        for f in range(1, n  ):
+        for f in range(1, n):
             result = n_minus1 + n_minus2
             n_minus2 = n_minus1
             n_minus1 = result
