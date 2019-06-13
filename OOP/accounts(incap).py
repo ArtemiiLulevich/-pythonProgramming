@@ -44,13 +44,13 @@ class Account:
 
 
 if __name__ == '__main__':
-    artemii = Account("Artemii", 0)
-    artemii.show_balance()
+    artemiy = Account("Artemii", 0)
+    artemiy.show_balance()
 
-    artemii.deposit(1000)
-    artemii.withdraw(500)
-    artemii.withdraw(501)
+    artemiy.deposit(1000)
+    artemiy.withdraw(500)
+    artemiy.withdraw(501)
 
-    artemii.show_transactions()
+    artemiy.show_transactions()
     # balance = artemii.balance
     # print(balance)
