@@ -1,5 +1,7 @@
 class Kettle(object):
 
+    power_source = "Electricity"
+
     def __init__(self, make, price):  # __init__ method is a constructor
         self.make = make
         self.price = price
@@ -18,7 +20,8 @@ print(kenwood.price)
 
 hamilton = Kettle("Hamilton", 14.55)
 
-print("Models: {0.make} - {0.price}, {1.make} - {1.price}".format(kenwood, hamilton))
+print("Models: {0.make} - {0.price}, "
+      "{1.make} - {1.price}".format(kenwood, hamilton))
 
 kenwood.switch_on()
 
@@ -34,4 +37,12 @@ saturn = Kettle("Saturn", 6)
 print(saturn.power)
 print(kenwood.power)
 
-print()
+print(Kettle.power_source)
+print("Switch kenwood power")
+kenwood.power_source = "Gas"
+print(kenwood.power_source)
+print(saturn.power_source)
+
+print(Kettle.__dict__)
+print(kenwood.__dict__)
+print(saturn.__dict__)
