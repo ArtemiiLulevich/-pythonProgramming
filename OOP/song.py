@@ -98,18 +98,18 @@ class Artist:
         self._albums.append(album )
 
 
-def load_data():
-
-    new_artist = None
-    new_album = None
-    artist_list = []
-
-    with open() as albums:
-        for line in albums:
-            artist_field, album_field, year_field, song_field = tuple(line.strip('\n').split('\t'))
-            year_field = int(year_field)
-            print(artist_field, album_field, year_field, song_field)
-
-
-if __name__ == "__main__":
-    load_data()
+# def load_data():
+#
+#     new_artist = None
+#     new_album = None
+#     artist_list = []
+#
+#     with open() as albums:
+#         for line in albums:
+#             artist_field, album_field, year_field, song_field = tuple(line.strip('\n').split('\t'))
+#             year_field = int(year_field)
+#             print(artist_field, album_field, year_field, song_field)
+#
+#
+# if __name__ == "__main__":
+#     load_data()
