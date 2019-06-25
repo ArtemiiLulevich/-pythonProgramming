@@ -7,7 +7,7 @@ class Song:
         duration (int): The duration of the song in seconds.
     """
 
-    def __init__(self, title, artist, duration):
+    def __init__(self, title, artist, duration=None):
         """Song init method
 
         Args:
@@ -17,36 +17,37 @@ class Song:
             duration ( Optional[int]: Init value of the 'duration' attribute.
                 Will default to zero if not specified
         """
-        self._title = title
-        self._artist = artist
-        self._duration = duration
+        self.title = title
+        self.artist = artist
+        self.duration = duration
+
 
 
 class Album:
     """Class to represent an Album.
 
     Attributes:
-        _album_name (str): The name of the album.
-        _year (int): The year the albun was released.
-        _artist (Artist): The artist responsible for the album.
+        album_name (str): The name of the album.
+        year (int): The year the albun was released.
+        artist (Artist): The artist responsible for the album.
         If specified, the artist will default to an artist with
         the name "Various Artists".
-        _tracks (List [Song]): A list of of the tracks on the album.
+        tracks (List [Song]): A list of of the tracks on the album.
 
     Methods:
         add_song: Use to add a new song to the album's track list.
         show_track_list: Use to show the album's track list.
     """
     def __init__(self, album_name, year, artist=None):
-        self._album_name = album_name
-        self._year = year
+        self.album_name = album_name
+        self.year = year
 
         if artist is None:
-            self._artist = Artist("Various Artist")
+            self.artist = Artist("Various Artist")
         else:
-            self._artist = artist
+            self.artist = artist
 
-        self._tracks = []
+        self.tracks = []
 
     def add_song(self, song, position=None):
         """Adds a song to the track list.
@@ -58,14 +59,14 @@ class Album:
             Otherwise, the song will be added to the end of the list.
         """
         if position is None:
-            self._tracks.append(song)
+            self.tracks.append(song)
         else:
-            self._tracks.insert(position, song)
+            self.tracks.insert(position, song)
 
     def show_track_list(self):
         """Return album's the track list on request.
         """
-        tracks = self._tracks
+        tracks = self.tracks
 
         return tracks
 
@@ -74,8 +75,8 @@ class Artist:
     """Basic class to store artist details.
 
     Attributes:
-        _name (str): The name of the artist.
-        _albums (List[Album]): A list of the albums by this artist.
+        name (str): The name of the artist.
+        albums (List[Album]): A list of the albums by this artist.
             The list include only those albums in this collection, it is
             not an exhaustive list of the artist's published albums.
 
@@ -84,8 +85,8 @@ class Artist:
         show_albums: Use to show the artist's album list.
     """
     def __init__(self, name):
-        self._name = name
-        self._albums = []
+        self.name = name
+        self.albums = []
 
     def add_album(self, album):
         """Add a new album to the list.
@@ -95,21 +96,60 @@ class Artist:
                 If the album is already presented, it will not added again
                 (although this is yet to implemented).
         """
-        self._albums.append(album )
+        self.albums.append(album)
 
 
-# def load_data():
-#
-#     new_artist = None
-#     new_album = None
-#     artist_list = []
-#
-#     with open() as albums:
-#         for line in albums:
-#             artist_field, album_field, year_field, song_field = tuple(line.strip('\n').split('\t'))
-#             year_field = int(year_field)
-#             print(artist_field, album_field, year_field, song_field)
-#
-#
-# if __name__ == "__main__":
-#     load_data()
+def load_data():
+
+    new_artist = None
+    new_album = None
+    artist_list = []
+
+    with open('albums.txt', 'r') as albums:
+        for line in albums:
+            artist_field, album_field, year_field, song_field = tuple(line.strip('\n').split('\t'))
+            year_field = int(year_field)
+            print("{}:{}:{}:{}".format(artist_field, album_field, year_field, song_field))
+
+            if new_artist is None:
+                new_artist = Artist(artist_field)
+            elif new_artist.name != artist_field:
+                # We've lust read details for a new album
+                # Store the current album in the current artists collection then create a new artist object
+                new_artist.add_album(new_album)
+                artist_list.append(new_artist)
+                new_artist = Artist(artist_field)
+                new_album = None
+
+            if new_album is None:
+                new_album = Album(album_field, year_field, new_artist)
+            elif new_album.album_name != album_field:
+                new_artist.add_album(new_album)
+                new_album = Album(album_field, year_field, new_artist)
+
+            new_song = Song(song_field, new_artist, None)
+            new_album.add_song(new_song)
+
+        if new_artist is not None:
+            if new_album is not None:
+                new_artist.add_album(new_album)
+            artist_list.append(new_artist)
+
+    return artist_list
+
+
+def create_check_file(artist_list):
+    """Create a check file the object data for comparison with the original file"""
+    with open('Check_file.txt', 'w') as check_file:
+        for new_artist in artist_list:
+            for new_album in new_artist.albums:
+                for new_song in new_album.tracks:
+                    print("{0.name}\t{1.album_name}\t{1.year}\t{2.title}".format(new_artist, new_album, new_song),
+                          file=check_file)
+
+
+if __name__ == "__main__":
+    artist_list = load_data()
+    print("There are {} artists".format(len(artist_list)))
+
+    create_check_file(artist_list)
