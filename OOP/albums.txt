@@ -59,6 +59,18 @@ Aerosmith	Aerosmith	1973	Mama Kin
 Aerosmith	Aerosmith	1973	Write Me
 Aerosmith	Aerosmith	1973	Movin' Out
 Aerosmith	Aerosmith	1973	Walkin' The Dog
+ZZ Top	Antenna	1994	Pincushion
+ZZ Top	Antenna	1994	Breakaway
+ZZ Top	Antenna	1994	World Of Swirl
+ZZ Top	Antenna	1994	Fuzzbox Voodoo
+ZZ Top	Antenna	1994	Girl In A T-Shirt
+ZZ Top	Antenna	1994	Antenna Head
+ZZ Top	Antenna	1994	PCH
+ZZ Top	Antenna	1994	Cherry Red
+ZZ Top	Antenna	1994	Cover Your Rig
+ZZ Top	Antenna	1994	Lizard Life
+ZZ Top	Antenna	1994	Deal Goin' Down
+ZZ Top	Antenna	1994	Everything
 Aerosmith	Get Your Wings	1974	Same Old Song And Dance
 Aerosmith	Get Your Wings	1974	Lord Of The Thighs
 Aerosmith	Get Your Wings	1974	Spaced
@@ -359,6 +371,14 @@ John Lee Hooker	Boogie Man - The Blues Collection 1	1993	This Is Hip
 John Lee Hooker	Boogie Man - The Blues Collection 1	1993	Goin' Mad Blues
 John Lee Hooker	Boogie Man - The Blues Collection 1	1993	Wandering Blues
 John Lee Hooker	Boogie Man - The Blues Collection 1	1993	House Rent Boogie
+Uriah Heep	The Magician's Birthday	1972	Sunrise
+Uriah Heep	The Magician's Birthday	1972	Spider Woman
+Uriah Heep	The Magician's Birthday	1972	Blind Eye
+Uriah Heep	The Magician's Birthday	1972	Echoes In The Dark
+Uriah Heep	The Magician's Birthday	1972	Rain
+Uriah Heep	The Magician's Birthday	1972	Sweet Lorraine
+Uriah Heep	The Magician's Birthday	1972	Tales
+Uriah Heep	The Magician's Birthday	1972	The Magician's Birthday
 Treatment	Running With The Dogs	2014	I Bleed Rock + Roll
 Treatment	Running With The Dogs	2014	Drop Like A Stone
 Treatment	Running With The Dogs	2014	Get The Party On
@@ -461,14 +481,6 @@ Uriah Heep	Demons And Wizards	1972	Rainbow Demon
 Uriah Heep	Demons And Wizards	1972	All My Life
 Uriah Heep	Demons And Wizards	1972	Paradise
 Uriah Heep	Demons And Wizards	1972	The Spell
-Uriah Heep	The Magician's Birthday	1972	Sunrise
-Uriah Heep	The Magician's Birthday	1972	Spider Woman
-Uriah Heep	The Magician's Birthday	1972	Blind Eye
-Uriah Heep	The Magician's Birthday	1972	Echoes In The Dark
-Uriah Heep	The Magician's Birthday	1972	Rain
-Uriah Heep	The Magician's Birthday	1972	Sweet Lorraine
-Uriah Heep	The Magician's Birthday	1972	Tales
-Uriah Heep	The Magician's Birthday	1972	The Magician's Birthday
 Uriah Heep	Uriah Heep Live	1986	Easy Livin'
 Uriah Heep	Uriah Heep Live	1986	So Tired
 Uriah Heep	Uriah Heep Live	1986	I Won't Mind
@@ -654,18 +666,6 @@ ZZ Top	Recycler	1990	Give It Up
 ZZ Top	Recycler	1990	2000 Blues
 ZZ Top	Recycler	1990	Burger Man
 ZZ Top	Recycler	1990	Doubleback
-ZZ Top	Antenna	1994	Pincushion
-ZZ Top	Antenna	1994	Breakaway
-ZZ Top	Antenna	1994	World Of Swirl
-ZZ Top	Antenna	1994	Fuzzbox Voodoo
-ZZ Top	Antenna	1994	Girl In A T-Shirt
-ZZ Top	Antenna	1994	Antenna Head
-ZZ Top	Antenna	1994	PCH
-ZZ Top	Antenna	1994	Cherry Red
-ZZ Top	Antenna	1994	Cover Your Rig
-ZZ Top	Antenna	1994	Lizard Life
-ZZ Top	Antenna	1994	Deal Goin' Down
-ZZ Top	Antenna	1994	Everything
 ZZ Top	Mescalero	2003	Mescalero
 ZZ Top	Mescalero	2003	Two Ways To Play
 ZZ Top	Mescalero	2003	Alley-gator

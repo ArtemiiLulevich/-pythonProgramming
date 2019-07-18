@@ -26,7 +26,7 @@ class Album:
     """Class to represent an Album.
 
     Attributes:
-        album_name (str): The name of the album.
+        name (str): The name of the album.
         year (int): The year the albun was released.
         artist (Artist): The artist responsible for the album.
         If specified, the artist will default to an artist with
@@ -37,8 +37,8 @@ class Album:
         add_song: Use to add a new song to the album's track list.
         show_track_list: Use to show the album's track list.
     """
-    def __init__(self, album_name, year, artist=None):
-        self.album_name = album_name
+    def __init__(self, name, year, artist=None):
+        self.name = name
         self.year = year
 
         if artist is None:
@@ -99,6 +99,8 @@ class Artist:
 
 
 def find_object(field, object_list):
+    """Check 'object_list' to see if an object with a 'name' attribute equal
+    to 'filed' exists, return it if so."""
     for item in object_list:
         if item.name == field:
             return item
@@ -119,27 +121,32 @@ def load_data():
 
             if new_artist is None:
                 new_artist = Artist(artist_field)
+                artist_list.append(new_artist)
             elif new_artist.name != artist_field:
                 # We've lust read details for a new album
-                # Store the current album in the current artists collection then create a new artist object
-                new_artist.add_album(new_album)
-                artist_list.append(new_artist)
-                new_artist = Artist(artist_field)
-                new_album = None
+                # retrieve the artist object if there is one.
+                # otherwise create a new artist object and add if to the artist list
+                new_artist = find_object(artist_field, artist_list)
+                if new_artist is None:
+                    new_artist = Artist(artist_field)
+                    artist_list.append(new_artist)
+
+                # new_artist.add_album(new_album)
+                # artist_list.append(new_artist)
+                # new_artist = Artist(artist_field)
+                # new_album = None
 
             if new_album is None:
                 new_album = Album(album_field, year_field, new_artist)
-            elif new_album.album_name != album_field:
                 new_artist.add_album(new_album)
-                new_album = Album(album_field, year_field, new_artist)
+            elif new_album.name != album_field:
+                new_album = find_object(album_field, new_artist.albums)
+                if new_album is None:
+                    new_album = Album(album_field, year_field, new_artist.albums)
+                    new_artist.add_album(new_album)
 
-            new_song = Song(song_field, new_artist, None)
+            new_song = Song(song_field, new_artist)
             new_album.add_song(new_song)
-
-        if new_artist is not None:
-            if new_album is not None:
-                new_artist.add_album(new_album)
-            artist_list.append(new_artist)
 
     return artist_list
 
@@ -150,7 +157,7 @@ def create_check_file(artist_list):
         for new_artist in artist_list:
             for new_album in new_artist.albums:
                 for new_song in new_album.tracks:
-                    print("{0.name}\t{1.album_name}\t{1.year}\t{2.title}".format(new_artist, new_album, new_song),
+                    print("{0.name}\t{1.name}\t{1.year}\t{2.title}".format(new_artist, new_album, new_song),
                           file=check_file)
 
 
