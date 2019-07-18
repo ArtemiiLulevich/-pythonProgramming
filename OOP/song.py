@@ -22,7 +22,6 @@ class Song:
         self.duration = duration
 
 
-
 class Album:
     """Class to represent an Album.
 
@@ -97,6 +96,13 @@ class Artist:
                 (although this is yet to implemented).
         """
         self.albums.append(album)
+
+
+def find_object(field, object_list):
+    for item in object_list:
+        if item.name == field:
+            return item
+    return None
 
 
 def load_data():
